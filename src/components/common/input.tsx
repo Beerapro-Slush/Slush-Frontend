@@ -38,7 +38,7 @@ export default function Input({
           placeholder={placeholder}
           name={name}
           type={type}
-          className="w-full border-none placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded-[4px] px-2.5 h-[32px] text-footNote font-el"
+          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded-[4px] px-2.5 h-[32px] text-footNote font-el"
         ></input>
       )}
       {size === 'small' && (
@@ -47,7 +47,7 @@ export default function Input({
           placeholder={placeholder}
           name={name}
           type={type}
-          className="w-full border-none placeholder:text-sc-grays-2 text-sc-black  bg-sc-grays-6 rounded-[4px] px-2.5 h-[28px] text-footNote font-el"
+          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black  bg-sc-grays-6 rounded-[4px] px-2.5 h-[28px] text-footNote font-el"
         ></input>
       )}
       {size === 'large' && (
@@ -56,7 +56,7 @@ export default function Input({
           placeholder={placeholder}
           name={name}
           type={type}
-          className="w-full border-none placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded-[4px] px-2.5 h-[36px] text-footNote font-el"
+          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded-[4px] px-2.5 h-[36px] text-footNote font-el"
         ></input>
       )}
     </div>
