@@ -9,13 +9,6 @@ module.exports = {
       fontFamily: {
         Gmarket: ['GmarketSans', 'sans-serif'],
       },
-      fontWeight: {
-        el: 200,
-        l: 300,
-        m: 500,
-        sm: 600,
-        b: 700,
-      },
       fontSize: {
         hugeTitle: '60px',
         largeTitle: '34px',
