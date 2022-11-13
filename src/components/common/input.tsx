@@ -1,4 +1,3 @@
-import { text } from 'node:stream/consumers';
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
 interface InputProps {
@@ -7,8 +6,8 @@ interface InputProps {
   isLabel?: boolean;
   labelText?: string;
   size?: 'default' | 'small' | 'large';
-  register?: UseFormRegisterReturn;
   type?: string;
+  register?: UseFormRegisterReturn;
   [key: string]: any;
 }
 
@@ -17,7 +16,7 @@ export default function Input({
   labelText,
   name,
   size = 'default',
-  type = 'text',
+  type,
   placeholder,
   ...rest
 }: InputProps) {
@@ -38,7 +37,7 @@ export default function Input({
           placeholder={placeholder}
           name={name}
           type={type}
-          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded-[4px] px-2.5 h-[32px] text-footNote font-el"
+          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded-[4px] px-2.5 h-[32px] text-footNote font-el transition"
         ></input>
       )}
       {size === 'small' && (
@@ -47,7 +46,7 @@ export default function Input({
           placeholder={placeholder}
           name={name}
           type={type}
-          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black  bg-sc-grays-6 rounded-[4px] px-2.5 h-[28px] text-footNote font-el"
+          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black  bg-sc-grays-6 rounded-[4px] px-2.5 h-[28px] text-footNote font-el transition"
         ></input>
       )}
       {size === 'large' && (
@@ -56,7 +55,7 @@ export default function Input({
           placeholder={placeholder}
           name={name}
           type={type}
-          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded-[4px] px-2.5 h-[36px] text-footNote font-el"
+          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded-[4px] px-2.5 h-[36px] text-footNote font-el transition"
         ></input>
       )}
     </div>
