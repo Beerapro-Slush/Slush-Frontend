@@ -16,11 +16,11 @@ export default function Checkbox({
   return (
     <>
       {id === 'selectAll' && (
-        <div className="mt-[32px]">
+        <div>
           <input
             id={id}
             type={type}
-            className="w-5 h-5 rounded text-sc-org-1 border-sc-grays-4  focus:ring-0 focus:ring-offset-0"
+            className="w-5 h-5 rounded text-sc-org-1 border-sc-grays-4  focus:ring-0 focus:ring-offset-0 transition"
             checked={isChecked}
             onChange={handler}
           />
@@ -37,7 +37,7 @@ export default function Checkbox({
           <input
             id={id}
             type={type}
-            className="w-5 h-5 rounded text-sc-org-1 border-sc-grays-4 bg-gray-100 focus:ring-0 focus:ring-offset-0"
+            className="w-5 h-5 rounded text-sc-org-1 border-sc-grays-4 bg-gray-100 focus:ring-0 focus:ring-offset-0 transition"
             checked={isChecked}
             onChange={handler}
           />
