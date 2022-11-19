@@ -13,9 +13,9 @@ export default function Signup() {
       </h1>
       <form autoComplete="off" className="mt-10">
         <div className="grid grid-cols-1 gap-4">
-          <Input name="university" placeholder="아이디 (이메일) 입력" />
+          <Input name="email" placeholder="아이디 (이메일) 입력" />
           <Input
-            name="university"
+            name="confirm"
             placeholder="입력하신 메일로 전송된 번호를 입력해주세요."
           />
         </div>
