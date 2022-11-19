@@ -12,11 +12,12 @@ interface InputProps {
 }
 
 export default function Input({
+  register,
   isLabel = false,
   labelText,
   name,
   size = 'default',
-  type,
+  type = 'text',
   placeholder,
   ...rest
 }: InputProps) {
@@ -33,29 +34,32 @@ export default function Input({
 
       {size === 'default' && (
         <input
+          {...register}
           {...rest}
           placeholder={placeholder}
           name={name}
           type={type}
-          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded-[4px] px-2.5 h-[32px] text-footNote font-normal transition"
+          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded px-2.5 h-8 text-footNote font-normal transition"
         ></input>
       )}
       {size === 'small' && (
         <input
+          {...register}
           {...rest}
           placeholder={placeholder}
           name={name}
           type={type}
-          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black  bg-sc-grays-6 rounded-[4px] px-2.5 h-[28px] text-footNote font-normal transition"
+          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black  bg-sc-grays-6 rounded px-2.5 h-7 text-footNote font-normal transition"
         ></input>
       )}
       {size === 'large' && (
         <input
+          {...register}
           {...rest}
           placeholder={placeholder}
           name={name}
           type={type}
-          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded-[4px] px-2.5 h-[36px] text-footNote font-normal transition"
+          className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded px-2.5 h-9 text-footNote font-normal transition"
         ></input>
       )}
     </div>
