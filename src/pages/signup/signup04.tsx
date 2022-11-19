@@ -32,7 +32,7 @@ export default function Signup() {
             placeholder="비밀번호 재입력"
           />
           <Input
-            name="confirmPassword"
+            name="gender"
             isLabel
             labelText="성별"
             placeholder="성별 선택"
