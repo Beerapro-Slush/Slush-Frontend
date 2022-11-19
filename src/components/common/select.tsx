@@ -1,5 +1,5 @@
 import cls from '@utils/cls';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import type {
   FieldPath,
   UseFormRegisterReturn,
@@ -29,8 +29,7 @@ export default function Select<T extends FieldValues>({
   options,
   ...rest
 }: SelectProps<T>) {
-  const [focus, setFocus] = useState<boolean>(false);
-  const optionRef = useRef<HTMLDivElement>(null);
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   return (
     <div>
@@ -45,7 +44,7 @@ export default function Select<T extends FieldValues>({
       <input
         {...register}
         {...rest}
-        onFocus={() => setFocus(true)}
+        onFocus={() => setIsActive(true)}
         // onBlur={() => setFocus(false)}
         placeholder={placeholder}
         id={name}
@@ -53,10 +52,9 @@ export default function Select<T extends FieldValues>({
         className="w-full border-none appearance-none  focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded-[4px] px-2.5 py-0 h-8 text-footNote font-normal transition"
       />
       <div
-        ref={optionRef}
         className={cls(
           'mt-2 divide-y-[1px] w-full rounded-lg shadow-md transition overflow-hidden',
-          focus ? 'block' : 'hidden',
+          isActive ? 'block' : 'hidden',
         )}
       >
         {[...options].reverse().map((option, index) => (
@@ -64,7 +62,7 @@ export default function Select<T extends FieldValues>({
             className="transition flex w-full items-center h-11 px-4 text-footNote text-sc-grays-1 hover:bg-sc-org-1 hover:text-sc-white"
             key={index}
             onClick={() => {
-              setFocus(false);
+              setIsActive(false);
               setValue(name, option as FieldPathValue<T, FieldPath<T>>);
             }}
           >

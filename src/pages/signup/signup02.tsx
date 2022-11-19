@@ -36,8 +36,6 @@ export default function Signup() {
             placeholder="입학년도를 선택해주세요."
             register={register('admission_year')}
             setValue={setValue}
-            isLabel
-            labelText="입학년도"
             options={[
               '2015',
               '2016',
