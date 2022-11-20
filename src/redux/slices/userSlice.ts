@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface userState {
   university: string;
-  admission_year: Date | null;
+  admission_year: string;
   email: string;
 }
 const initialState: userState = {
   university: '',
-  admission_year: null,
+  admission_year: '',
   email: '',
 };
 
