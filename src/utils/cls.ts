@@ -1,3 +1,3 @@
 export default function cls(...className: string[]) {
-  return className.join(' ');
+  return className.filter(Boolean).join(' ');
 }
