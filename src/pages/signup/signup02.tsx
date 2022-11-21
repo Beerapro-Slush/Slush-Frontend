@@ -34,17 +34,16 @@ export default function Signup() {
           <Select
             name="admission_year"
             placeholder="입학년도를 선택해주세요."
-            register={register('admission_year')}
             setValue={setValue}
             options={[
-              '2015',
-              '2016',
-              '2017',
-              '2018',
-              '2019',
-              '2020',
-              '2021',
-              '2022',
+              { id: 1, option: '2015' },
+              { id: 2, option: '2016' },
+              { id: 3, option: '2017' },
+              { id: 4, option: '2018' },
+              { id: 5, option: '2019' },
+              { id: 6, option: '2020' },
+              { id: 7, option: '2021' },
+              { id: 8, option: '2022' },
             ]}
           />
         </div>
