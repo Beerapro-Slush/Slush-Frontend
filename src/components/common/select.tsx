@@ -94,7 +94,7 @@ export default function Select<T extends FieldValues>({
               leaveTo="opacity-0"
             >
               <Listbox.Options className="shadow-lg divide-y-[1px] absolute text-footNote font-normal z-10 mt-2 w-full rounded bg-white overflow-hidden ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                {options?.map((option) => (
+                {[...options]?.reverse().map((option) => (
                   <Listbox.Option
                     key={option.id}
                     className={({ active }) =>
