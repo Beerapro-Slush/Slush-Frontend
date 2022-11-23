@@ -4,6 +4,8 @@ import ProgressBar from '@components/common/progressBar';
 import Input from '@components/common/input';
 import { useForm } from 'react-hook-form';
 import Select from '@components/common/select';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { setUserForm } from 'redux/slices/userSlice';
 
 export interface SignupForm {
   university: string;
@@ -13,7 +15,15 @@ export interface SignupForm {
 export default function Signup() {
   const { register, handleSubmit, setValue } = useForm<SignupForm>();
 
+  const universityState = useAppSelector((state) => state.user.university);
+  const admissionYearState = useAppSelector(
+    (state) => state.user.admission_year,
+  );
+  const dispatch = useAppDispatch();
+
   const onValid = (form: SignupForm) => {
+    const { university, admission_year } = form;
+    dispatch(setUserForm({ university, admission_year }));
     console.log(form);
   };
 
@@ -30,6 +40,7 @@ export default function Signup() {
             type="text"
             placeholder="재학 중인 학교를 검색해주세요."
             register={register('university')}
+            defaultValue={universityState}
           />
           <Select
             name="admission_year"
@@ -45,6 +56,7 @@ export default function Signup() {
               { id: 7, option: '2021' },
               { id: 8, option: '2022' },
             ]}
+            defaultValue={admissionYearState}
           />
         </div>
         <div className="mt-8">
