@@ -15,16 +15,25 @@ export interface SignupForm {
 export default function Signup() {
   const { register, handleSubmit, setValue } = useForm<SignupForm>();
 
-  const universityState = useAppSelector((state) => state.user.university);
+  const dispatch = useAppDispatch();
+  const univState = useAppSelector((state) => state.user.university);
   const admissionYearState = useAppSelector(
     (state) => state.user.admission_year,
   );
-  const dispatch = useAppDispatch();
 
   const onValid = (form: SignupForm) => {
     const { university, admission_year } = form;
-    dispatch(setUserForm({ university, admission_year }));
+    dispatch(setUserForm({ admission_year, university }));
     console.log(form);
+  };
+
+  const thisYear = new Date().getFullYear();
+  const admissionYearList = () => {
+    const option = [];
+    for (let i = 2015; i <= thisYear; i++) {
+      option.push({ option: i.toString() });
+    }
+    return option;
   };
 
   return (
@@ -40,23 +49,14 @@ export default function Signup() {
             type="text"
             placeholder="재학 중인 학교를 검색해주세요."
             register={register('university')}
-            defaultValue={universityState}
+            defaultValue={univState}
           />
           <Select
             name="admission_year"
             placeholder="입학년도를 선택해주세요."
             setValue={setValue}
-            options={[
-              { id: 1, option: '2015' },
-              { id: 2, option: '2016' },
-              { id: 3, option: '2017' },
-              { id: 4, option: '2018' },
-              { id: 5, option: '2019' },
-              { id: 6, option: '2020' },
-              { id: 7, option: '2021' },
-              { id: 8, option: '2022' },
-            ]}
-            defaultValue={admissionYearState}
+            options={admissionYearList()}
+            globalState={admissionYearState}
           />
         </div>
         <div className="mt-8">
