@@ -10,7 +10,6 @@ import type {
 import cls from '@utils/cls';
 
 type Option = {
-  id: number;
   option: string;
 };
 
@@ -22,6 +21,7 @@ interface SelectProps<T extends FieldValues> {
   isLabel?: boolean;
   labelText?: string;
   options: Option[];
+  globalState: string;
   [key: string]: any;
 }
 
@@ -32,17 +32,17 @@ export default function Select<T extends FieldValues>({
   name,
   placeholder,
   options,
-  defaultValue,
+  globalState,
   ...rest
 }: SelectProps<T>) {
   const [selected, setSelected] = useState<Option>({
-    id: 0,
-    option: defaultValue === '' ? placeholder : defaultValue,
+    option: globalState === '' ? placeholder : globalState,
   });
 
   useEffect(() => {
-    if (selected.id !== 0)
+    if (selected.option !== undefined)
       setValue(name, selected.option as FieldPathValue<T, FieldPath<T>>);
+    console.log(selected);
   }, [selected, name, setValue]);
 
   return (
@@ -65,7 +65,9 @@ export default function Select<T extends FieldValues>({
               <span
                 className={cls(
                   'flex items-center',
-                  selected.id !== 0 ? 'text-sc-black' : 'text-sc-grays-2',
+                  selected.option !== placeholder
+                    ? 'text-sc-black'
+                    : 'text-sc-grays-2',
                 )}
               >
                 <span className="block truncate ">{selected.option}</span>
@@ -97,7 +99,7 @@ export default function Select<T extends FieldValues>({
               <Listbox.Options className="shadow-lg divide-y-[1px] absolute text-footNote font-normal z-10 mt-2 w-full rounded bg-white overflow-hidden ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                 {[...options]?.reverse().map((option) => (
                   <Listbox.Option
-                    key={option.id}
+                    key={option.option}
                     className={({ active }) =>
                       cls(
                         active ? 'text-sc-white bg-sc-org-1' : 'text-gray-900',
