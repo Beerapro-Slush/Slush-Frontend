@@ -10,17 +10,26 @@ import { useRouter } from 'next/router';
 
 export interface SignupForm {
   university: string;
-  admission_year: number;
+  admission_year: string;
 }
 
 export default function Signup() {
-  const { register, handleSubmit, setValue } = useForm<SignupForm>();
-
   const dispatch = useAppDispatch();
   const univState = useAppSelector((state) => state.user.university);
   const admissionYearState = useAppSelector(
     (state) => state.user.admission_year,
   );
+
+  const { register, handleSubmit, setValue, watch } = useForm<SignupForm>({
+    defaultValues: {
+      university: univState,
+      admission_year: admissionYearState,
+    },
+  });
+
+  const watchFields = watch();
+
+  console.log(watchFields);
   const router = useRouter();
 
   const onValid = (form: SignupForm) => {
@@ -62,7 +71,12 @@ export default function Signup() {
           />
         </div>
         <div className="mt-8">
-          <Button text="다음" />
+          <Button
+            disabled={
+              watchFields.admission_year === '' || watchFields.university === ''
+            }
+            text="다음"
+          />
         </div>
       </form>
     </Layout>
