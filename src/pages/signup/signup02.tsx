@@ -61,9 +61,7 @@ export default function Signup() {
         </div>
         <div className="mt-8">
           <Button
-            disabled={
-              watchFields.admission_year === '' || watchFields.university === ''
-            }
+            disabled={!watchFields.admission_year || !watchFields.university}
             text="다음"
           />
         </div>

@@ -68,7 +68,7 @@ export default function Signup() {
         </div>
         <div className="mt-8">
           <Button
-            disabled={watchFields.email === '' || Boolean(errors.email)}
+            disabled={!watchFields.email || Boolean(errors.email)}
             text="다음"
           />
           {/* <Button text="인증번호 전송" /> */}
