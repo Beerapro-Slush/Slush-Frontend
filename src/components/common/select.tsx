@@ -2,7 +2,6 @@ import { Fragment, useState, useEffect } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import type {
   FieldPath,
-  UseFormRegisterReturn,
   UseFormSetValue,
   FieldPathValue,
   FieldValues,
@@ -16,7 +15,6 @@ type Option = {
 interface SelectProps<T extends FieldValues> {
   name: FieldPath<T>;
   setValue: UseFormSetValue<T>;
-  register?: UseFormRegisterReturn;
   placeholder: string;
   isLabel?: boolean;
   labelText?: string;
@@ -36,13 +34,12 @@ export default function Select<T extends FieldValues>({
   ...rest
 }: SelectProps<T>) {
   const [selected, setSelected] = useState<Option>({
-    option: globalState === '' ? placeholder : globalState,
+    option: globalState === '' ? '' : globalState,
   });
 
   useEffect(() => {
     if (selected.option !== undefined)
       setValue(name, selected.option as FieldPathValue<T, FieldPath<T>>);
-    console.log(selected);
   }, [selected, name, setValue]);
 
   return (
@@ -60,17 +57,17 @@ export default function Select<T extends FieldValues>({
           <div className="relative" id={name}>
             <Listbox.Button
               {...rest}
-              className="text-left text-sc-black w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 bg-sc-grays-6 rounded px-2.5 py-0 h-8 text-footNote font-normal transition"
+              className="text-left text-sc-black w-full border-none appearance-none focus:border-sc-org-1-2 focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 bg-sc-grays-6 rounded px-2.5 py-0 h-8 text-footNote font-normal transition"
             >
               <span
                 className={cls(
                   'flex items-center',
-                  selected.option !== placeholder
-                    ? 'text-sc-black'
-                    : 'text-sc-grays-2',
+                  selected.option ? 'text-sc-black' : 'text-sc-grays-2',
                 )}
               >
-                <span className="block truncate ">{selected.option}</span>
+                <span className="block truncate">
+                  {selected.option ? selected.option : placeholder}
+                </span>
               </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                 <svg
@@ -96,7 +93,7 @@ export default function Select<T extends FieldValues>({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="shadow-lg divide-y-[1px] absolute text-footNote font-normal z-10 mt-2 w-full rounded bg-white overflow-hidden ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              <Listbox.Options className="shadow-lg divide-y-[1px] absolute text-footNote font-normal z-10 mt-2 w-full rounded bg-white overflow-hidden ring-1 ring-black ring-opacity-5 sm:text-sm">
                 {[...options]?.reverse().map((option) => (
                   <Listbox.Option
                     key={option.option}

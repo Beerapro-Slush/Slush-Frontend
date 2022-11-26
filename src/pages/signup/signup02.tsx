@@ -6,34 +6,34 @@ import { useForm } from 'react-hook-form';
 import Select from '@components/common/select';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { setUserForm } from 'redux/slices/userSlice';
-
-export interface SignupForm {
+import { useRouter } from 'next/router';
+import yaerList from '@utils/yearList';
+interface SignupForm {
   university: string;
-  admission_year: number;
+  admission_year: string;
 }
 
 export default function Signup() {
-  const { register, handleSubmit, setValue } = useForm<SignupForm>();
-
   const dispatch = useAppDispatch();
   const univState = useAppSelector((state) => state.user.university);
   const admissionYearState = useAppSelector(
     (state) => state.user.admission_year,
   );
 
+  const { register, handleSubmit, setValue, watch } = useForm<SignupForm>({
+    defaultValues: {
+      university: univState,
+      admission_year: admissionYearState,
+    },
+  });
+
+  const watchFields = watch();
+  const router = useRouter();
+
   const onValid = (form: SignupForm) => {
     const { university, admission_year } = form;
     dispatch(setUserForm({ admission_year, university }));
-    console.log(form);
-  };
-
-  const thisYear = new Date().getFullYear();
-  const admissionYearList = () => {
-    const option = [];
-    for (let i = 2015; i <= thisYear; i++) {
-      option.push({ option: i.toString() });
-    }
-    return option;
+    if (university && admission_year) router.push('/signup/signup03');
   };
 
   return (
@@ -48,19 +48,22 @@ export default function Signup() {
             name="university"
             type="text"
             placeholder="재학 중인 학교를 검색해주세요."
-            register={register('university')}
-            defaultValue={univState}
+            register={register('university', { required: true })}
+            globalState={univState}
           />
           <Select
             name="admission_year"
             placeholder="입학년도를 선택해주세요."
             setValue={setValue}
-            options={admissionYearList()}
+            options={yaerList}
             globalState={admissionYearState}
           />
         </div>
         <div className="mt-8">
-          <Button text="다음" />
+          <Button
+            disabled={!watchFields.admission_year || !watchFields.university}
+            text="다음"
+          />
         </div>
       </form>
     </Layout>

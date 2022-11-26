@@ -12,6 +12,7 @@ export default function Button({
   return disabled ? (
     <button
       {...rest}
+      disabled
       className="w-full transition cursor-not-allowed opacity-30 h-[40px] text-headline rounded-lg border border-transparen hover:bg-sc-org-2 bg-sc-org-1 px-4 text-white"
     >
       {text}
