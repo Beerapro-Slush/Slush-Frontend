@@ -2,7 +2,6 @@ import { Fragment, useState, useEffect } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import type {
   FieldPath,
-  UseFormRegisterReturn,
   UseFormSetValue,
   FieldPathValue,
   FieldValues,
@@ -16,7 +15,6 @@ type Option = {
 interface SelectProps<T extends FieldValues> {
   name: FieldPath<T>;
   setValue: UseFormSetValue<T>;
-  register?: UseFormRegisterReturn;
   placeholder: string;
   isLabel?: boolean;
   labelText?: string;
@@ -42,7 +40,6 @@ export default function Select<T extends FieldValues>({
   useEffect(() => {
     if (selected.option !== undefined)
       setValue(name, selected.option as FieldPathValue<T, FieldPath<T>>);
-    console.log(selected);
   }, [selected, name, setValue]);
 
   return (
