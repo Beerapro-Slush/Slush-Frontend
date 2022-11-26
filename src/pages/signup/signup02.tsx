@@ -7,7 +7,7 @@ import Select from '@components/common/select';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { setUserForm } from 'redux/slices/userSlice';
 import { useRouter } from 'next/router';
-
+import yaerList from '@utils/yearList';
 export interface SignupForm {
   university: string;
   admission_year: string;
@@ -28,23 +28,12 @@ export default function Signup() {
   });
 
   const watchFields = watch();
-
-  console.log(watchFields);
   const router = useRouter();
 
   const onValid = (form: SignupForm) => {
     const { university, admission_year } = form;
     dispatch(setUserForm({ admission_year, university }));
     if (university && admission_year) router.push('/signup/signup03');
-  };
-
-  const thisYear = new Date().getFullYear();
-  const admissionYearList = () => {
-    const option = [];
-    for (let i = 2015; i <= thisYear; i++) {
-      option.push({ option: i.toString() });
-    }
-    return option;
   };
 
   return (
@@ -66,7 +55,7 @@ export default function Signup() {
             name="admission_year"
             placeholder="입학년도를 선택해주세요."
             setValue={setValue}
-            options={admissionYearList()}
+            options={yaerList}
             globalState={admissionYearState}
           />
         </div>
