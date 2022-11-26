@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { setUserForm } from 'redux/slices/userSlice';
 import { useRouter } from 'next/router';
 import yaerList from '@utils/yearList';
-export interface SignupForm {
+interface SignupForm {
   university: string;
   admission_year: string;
 }
