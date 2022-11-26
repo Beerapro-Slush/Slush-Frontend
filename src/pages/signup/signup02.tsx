@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import Select from '@components/common/select';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { setUserForm } from 'redux/slices/userSlice';
+import { useRouter } from 'next/router';
 
 export interface SignupForm {
   university: string;
@@ -20,11 +21,12 @@ export default function Signup() {
   const admissionYearState = useAppSelector(
     (state) => state.user.admission_year,
   );
+  const router = useRouter();
 
   const onValid = (form: SignupForm) => {
     const { university, admission_year } = form;
     dispatch(setUserForm({ admission_year, university }));
-    console.log(form);
+    if (university && admission_year) router.push('/signup/signup03');
   };
 
   const thisYear = new Date().getFullYear();
@@ -48,8 +50,8 @@ export default function Signup() {
             name="university"
             type="text"
             placeholder="재학 중인 학교를 검색해주세요."
-            register={register('university')}
-            defaultValue={univState}
+            register={register('university', { required: true })}
+            globalState={univState}
           />
           <Select
             name="admission_year"
