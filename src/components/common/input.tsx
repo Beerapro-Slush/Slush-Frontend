@@ -8,6 +8,7 @@ interface InputProps {
   size?: 'default' | 'small' | 'large';
   type?: string;
   register?: UseFormRegisterReturn;
+  globalState?: string;
   [key: string]: any;
 }
 
@@ -19,6 +20,7 @@ export default function Input({
   size = 'default',
   type = 'text',
   placeholder,
+  globalState,
   ...rest
 }: InputProps) {
   return (
@@ -31,12 +33,12 @@ export default function Input({
           {labelText}
         </label>
       )}
-
       {size === 'default' && (
         <input
           {...register}
           {...rest}
           placeholder={placeholder}
+          defaultValue={globalState}
           id={name}
           type={type}
           className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded px-2.5 h-8 text-footNote font-normal transition"
@@ -47,6 +49,7 @@ export default function Input({
           {...register}
           {...rest}
           placeholder={placeholder}
+          defaultValue={globalState}
           id={name}
           type={type}
           className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black  bg-sc-grays-6 rounded px-2.5 h-7 text-footNote font-normal transition"
@@ -57,6 +60,7 @@ export default function Input({
           {...register}
           {...rest}
           placeholder={placeholder}
+          defaultValue={globalState}
           id={name}
           type={type}
           className="w-full border-none appearance-none focus:outline-none focus:ring-sc-org-1 focus:border-sc-org-1  placeholder:text-sc-grays-2 text-sc-black bg-sc-grays-6 rounded px-2.5 h-9 text-footNote font-normal transition"
