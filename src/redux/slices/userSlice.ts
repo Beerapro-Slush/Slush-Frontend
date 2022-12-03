@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface userState {
   university: string;
-  admission_year: string;
+  admissonYear: string;
   email: string;
 }
 const initialState: userState = {
   university: '',
-  admission_year: '',
+  admissonYear: '',
   email: '',
 };
 
@@ -15,13 +15,17 @@ const userSlice = createSlice({
   name: 'userReducer',
   initialState,
   reducers: {
-    setUserForm: (state, action) => {
-      state.university = action.payload.university;
-      state.admission_year = action.payload.admission_year;
-      state.email = action.payload.email;
-    },
+    setUniversity: (state, action) => ({
+      ...state,
+      university: action.payload,
+    }),
+    setAdmissionYear: (state, action) => ({
+      ...state,
+      admissonYear: action.payload,
+    }),
+    setEmail: (state, action) => ({ ...state, email: action.payload }),
   },
 });
 
-export const { setUserForm } = userSlice.actions;
+export const { setUniversity, setAdmissionYear, setEmail } = userSlice.actions;
 export default userSlice.reducer;
