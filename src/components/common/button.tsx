@@ -7,6 +7,7 @@ interface ButtonProps {
 export default function Button({
   text,
   disabled = false,
+  pressed = false,
   ...rest
 }: ButtonProps) {
   return disabled ? (
@@ -17,10 +18,17 @@ export default function Button({
     >
       {text}
     </button>
+  ) : pressed ? (
+    <button
+      {...rest}
+      className="w-full transition font-extralight hover:cursor-pointer h-10 text-headline rounded-lg border border-transparen bg-sc-org-3 px-4 text-white"
+    >
+      {text}
+    </button>
   ) : (
     <button
       {...rest}
-      className="w-full transition font-extralight hover:cursor-pointer h-10 text-headline rounded-lg border border-transparen hover:bg-sc-org-2 bg-sc-org-1 px-4 text-white"
+      className="w-full transition font-extralight hover:cursor-pointer h-10 text-headline rounded-lg border border-transparen  hover:bg-sc-org-2 bg-sc-org-1 px-4 text-white"
     >
       {text}
     </button>

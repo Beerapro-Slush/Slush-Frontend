@@ -57,7 +57,8 @@ export default function Signup() {
 
         <div className="mt-8">
           <Button
-            disabled={!watchFields.confirm || Boolean(errors.confirm)}
+            // disabled={!watchFields.confirm || Boolean(errors.confirm)}
+            pressed
             text="남은 시간"
           />
         </div>
