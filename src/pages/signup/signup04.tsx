@@ -14,7 +14,7 @@ interface SignupForm {
 }
 
 export default function Signup() {
-  const timer = useTimer({ mm: 10, ss: 0 });
+  const [timer] = useTimer(10, 0);
   const emailState = useAppSelector((state) => state.user.email);
 
   const {

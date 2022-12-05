@@ -5,7 +5,9 @@ interface TimerProps {
   ss: number;
 }
 
-const useTimer = ({ mm, ss }: TimerProps) => {
+type IimerPros = [string];
+
+const useTimer = (mm: number, ss: number): IimerPros => {
   const [minutes, setMinutes] = useState(mm);
   const [seconds, setSeconds] = useState(ss);
   const [timer, setTimer] = useState('');
@@ -29,7 +31,7 @@ const useTimer = ({ mm, ss }: TimerProps) => {
     return () => clearInterval(countdown);
   }, [minutes, seconds]);
 
-  return timer;
+  return [timer];
 };
 
 export default useTimer;
