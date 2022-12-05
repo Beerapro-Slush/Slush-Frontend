@@ -1,10 +1,5 @@
 import { useState, useEffect } from 'react';
 
-interface TimerProps {
-  mm: number;
-  ss: number;
-}
-
 type IimerPros = [string];
 
 const useTimer = (mm: number, ss: number): IimerPros => {
