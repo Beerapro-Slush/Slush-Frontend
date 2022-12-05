@@ -3,8 +3,11 @@ import Layout from '@components/common/layout';
 import ProgressBar from '@components/common/progressBar';
 import Checkbox from '@components/common/checkbox';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
 
 export default function Signup() {
+  const { handleSubmit } = useForm();
   const [checkedTerm, setCheckedTerm] = useState<string[]>([]);
 
   const onCheckedAll = (checked: boolean): void => {
@@ -27,6 +30,12 @@ export default function Signup() {
     }
   };
 
+  const router = useRouter();
+
+  const onValid = () => {
+    if (checkedTerm.length === 3) router.push('/signup/signup02');
+  };
+
   return (
     <Layout>
       <ProgressBar totalPage={5} currentPage={1} />
@@ -34,7 +43,7 @@ export default function Signup() {
         SLUSH 서비스 이용약관에
         <br /> 동의해주세요.
       </h1>
-      <form autoComplete="off" className="space-y-4">
+      <form onSubmit={handleSubmit(onValid)} className="space-y-4">
         <div className="mt-8">
           <Checkbox
             id="selectAll"
@@ -78,7 +87,7 @@ export default function Signup() {
             </li>
           </ul>
           <Button
-            disabled={checkedTerm.length === 3 ? false : true}
+            disabled={checkedTerm.length !== 3}
             text="동의 후 가입하기"
           ></Button>
         </div>

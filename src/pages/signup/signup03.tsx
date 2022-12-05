@@ -4,9 +4,10 @@ import ProgressBar from '@components/common/progressBar';
 import Input from '@components/common/input';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { useForm } from 'react-hook-form';
-import { setUserForm } from 'redux/slices/userSlice';
+import { setEmail } from 'redux/slices/userSlice';
 import ErrorMessage from '@components/common/errorMessage';
 import { useRouter } from 'next/router';
+
 interface SignupForm {
   email: string;
 }
@@ -24,9 +25,12 @@ export default function Signup() {
     defaultValues: { email: emailState },
   });
 
+  const router = useRouter();
+
   const onValid = (form: SignupForm) => {
     const { email } = form;
-    dispatch(setUserForm({ email }));
+    dispatch(setEmail(email));
+    router.push('/signup/signup04');
   };
 
   const watchFields = watch();
@@ -71,7 +75,6 @@ export default function Signup() {
             disabled={!watchFields.email || Boolean(errors.email)}
             text="다음"
           />
-          {/* <Button text="인증번호 전송" /> */}
         </div>
       </form>
     </Layout>
