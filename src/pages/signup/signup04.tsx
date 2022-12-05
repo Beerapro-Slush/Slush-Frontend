@@ -2,17 +2,19 @@ import Button from '@components/common/button';
 import Layout from '@components/common/layout';
 import ProgressBar from '@components/common/progressBar';
 import Input from '@components/common/input';
-import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { useAppSelector } from 'redux/hooks';
 import { useForm } from 'react-hook-form';
-import { setEmail } from 'redux/slices/userSlice';
 import ErrorMessage from '@components/common/errorMessage';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+import useTimer from '@hooks/useTimer';
 
 interface SignupForm {
   confirm: number;
 }
 
 export default function Signup() {
+  const timer = useTimer({ mm: 10, ss: 0 });
   const emailState = useAppSelector((state) => state.user.email);
 
   const {
@@ -28,8 +30,6 @@ export default function Signup() {
     console.log(form);
     router.push('/signup/signup05');
   };
-
-  const watchFields = watch();
 
   return (
     <Layout>
@@ -59,7 +59,7 @@ export default function Signup() {
           <Button
             // disabled={!watchFields.confirm || Boolean(errors.confirm)}
             pressed
-            text="남은 시간"
+            text={`남은시간 ${timer}`}
           />
         </div>
       </form>

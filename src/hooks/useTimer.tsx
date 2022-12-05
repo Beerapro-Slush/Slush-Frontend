@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 
 interface TimerProps {
-  mm: string;
-  ss: string;
+  mm: number;
+  ss: number;
 }
 
-const Timer = ({ mm, ss }: TimerProps) => {
-  const [minutes, setMinutes] = useState(parseInt(mm));
-  const [seconds, setSeconds] = useState(parseInt(ss));
+const useTimer = ({ mm, ss }: TimerProps) => {
+  const [minutes, setMinutes] = useState(mm);
+  const [seconds, setSeconds] = useState(ss);
+  const [timer, setTimer] = useState('');
 
   useEffect(() => {
     const countdown = setInterval(() => {
@@ -23,14 +24,12 @@ const Timer = ({ mm, ss }: TimerProps) => {
         }
       }
     }, 1000);
+    console.log(minutes, seconds);
+    setTimer(`${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`);
     return () => clearInterval(countdown);
   }, [minutes, seconds]);
 
-  return (
-    <div>
-      {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-    </div>
-  );
+  return timer;
 };
 
-export default Timer;
+export default useTimer;
